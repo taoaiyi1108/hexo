@@ -10,7 +10,7 @@ categories: 编程
 
 - 模板引擎 说白了就是遍历数组对象的一种方法，提高网页加载速度 类似于vue中的v-for  angular中的ng-for
 - 引入js文件`<script type="text/javascript" src="./js/handlebars.min.js"></script>`
-- 可是使用 （基于JQ）
+- 开始使用 （基于JQ）
 ```html
 	<div class="videoList">
 		<ul class="videoListWrap">
