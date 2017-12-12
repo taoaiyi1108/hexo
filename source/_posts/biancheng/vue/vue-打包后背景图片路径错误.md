@@ -36,7 +36,7 @@ categories: 编程
 	  return ['vue-style-loader'].concat(loaders)
 	}
 ```
-- config/index.js 文件中的assetsPublicPath
+- config/index.js 文件中的build下的assetsPublicPath（如果上面的更改不起作用在修改此处）
 ```javascript
 	assetsSubDirectory: 'static',
     assetsPublicPath: './', //此处更改
