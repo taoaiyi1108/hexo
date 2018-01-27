@@ -74,12 +74,12 @@ categories: 编程
 			getlist(){
 				var _this = this;
 				this.#http.get(url).then( (res)  =>{
-						_this.datalist = res.body;
-						_this.$nextTick( () =>{
-								var lis = document.querySelectorAll('.lis');
-								// lis 就是ul下的li
-							})
+					_this.datalist = res.body;
+					_this.$nextTick( () =>{
+						var lis = document.querySelectorAll('.lis');
+						// lis 就是ul下的li
 					})
+				})
 			}
 		}
 	</script>
