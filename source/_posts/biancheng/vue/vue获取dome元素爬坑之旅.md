@@ -40,8 +40,8 @@ categories: 编程
 
 	methods:{
 		go(e){
-			el.currentTarget //获取当前父元素
- 	 		el.target //获取当前点击的目标元素
+			e.currentTarget //获取当前父元素
+		 	e.target //获取当前点击的目标元素
 		}
 	}
 
