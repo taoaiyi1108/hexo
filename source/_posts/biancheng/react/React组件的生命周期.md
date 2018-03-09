@@ -1,5 +1,5 @@
 ---
-title: React组件的生命周期
+title: React组件的生命周期总结
 date: 2018-03-08 15:45:33
 tags: React
 categories: 编程
@@ -27,5 +27,24 @@ categories: 编程
       i. componentWillUnmount() 组件对应的 DOM 元素从页面中删除之前调用。
       ii. 从页面中删除 
 
+
+```
+
+##### 代码书写小贴士
+
+```
+      a.命名方法
+	      i. 组件的私有方法都用 _ 开头，
+	      ii. 所有事件监听的方法都用 handle 开头。
+	      iii. 把事件监听方法传给组件的时候，属性名用 on 开头
+      d. 组件的内容编写顺序如下
+          i. static 开头的类属性，如 defaultProps、propTypes。
+          ii. 构造函数，constructor。
+          iii. getter/setter（还不了解的同学可以暂时忽略）。
+          iv. 组件生命周期。
+          v. _ 开头的私有方法。
+          vi. 事件监听方法，handle*。
+          vii. render*开头的方法，有时候 render() 方法里面的内容会分开到不同函数里面进行，这些函数都以 render* 开头。
+          viii. render() 方法
 
 ```
