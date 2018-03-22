@@ -78,7 +78,7 @@ theme: yelee
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/taoaiyi1108/taoaiyi1108.github.io.git
+  repo: git@github.com:taoaiyi1108/taoaiyi1108.github.io.git
   branch: master
 
 jsonContent:
