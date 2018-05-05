@@ -287,3 +287,119 @@ module.exports = router;
     ```
     + 回头查看md.json文件，也有了我们写入的数据
     ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-7.png)
+
+##### 阅读模块写入接口
+- 这个接口不同于之前的写入接口，我们单独开发
+- 继续编辑data.js文件
+```javascript
+/* data.js */
+
+/* 数据存储模块 */
+// ******
+
+/* 阅读模块写入接口 */
+router.post('/write_config',function(req,res,next){
+    //TODO:进行后期数据的提交验证
+    //防xss攻击   npm install xss
+    // require('xss')
+    //var str = xss(name)
+    var data =  req.body.data;
+    //TODO : try catch
+    var obj = JSON.parse(data);
+    var newData = JSON.stringify(obj);
+    //写入
+    fs.watchFile(PATH + 'config.json',newData,function(err){
+        if(err){
+            return res.send({
+                status:0,
+                info:'写入数据失败'
+            })
+        }
+        return res.send({
+            status:1,
+            info:obj
+        })
+    })
+})
+
+// *****
+/* guid */
+```
+
+#### 后台系统设计
+
+##### 设计
+- 后台系统只提供写入的操作不提供删除操作
+- 轻量化
+    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-8.png)
+
+##### 登录服务
+- 为了开发登录服务，我们需要支持session 安装支持session的插件`npm install express-session --save`
+- 在入口文件app.js引入使用类库
+    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-9.png)
+```javascript
+//参考别人的 https://github.com/vczero/toilet/blob/master/service/app.js
+app.use(session({
+  secret: '#sddjswjdhww22ygfw2233@@@%#$!@%Q!%*12',
+  resave: false,
+  saveUninitialized: true
+}));
+```
+- 继续编辑data.js
+```javascript
+/* data.js */
+
+/* 阅读模块写入接口 */
+// ******
+
+/* 登录接口 */
+router.post('/login',function(req, res, next){
+    // 用户名，密码，验证码
+    var username = req.body.username;
+    var password = req.body.password;
+
+    // TODO:对y用户名密码进行校验（后期完善）
+    // xss处理， 判空
+
+    // 密码加密(不止一次加密，可以进行多次加密提高安全性) md5( md5 ( password + '随机数' ) )
+
+    //这里只是演示写死
+    //密码在加密完成之后是可以写入json文件的
+    if(username === 'admin' && password === '123456'){
+        req.session.user = {
+            username:username
+        }
+        return res.send({
+            status:1
+        })
+    }
+    return res.send({
+        status:0,
+        info:'登录失败'
+    })
+})
+
+// *****
+/* guid */
+```
+##### 接口注意书写
+- router.get 一般供客户端使用
+    - 查询接口继续验证 token校验
+    - 公关接口无需校验
+- router.post 一般供后台开发使用 
+    - 判断用户是否登录，未登录不允许调用接口
+    ```javascript
+    router.post('/write',function(req,res,next){
+        /*判断用户是否登录*/
+        if(!req.session.user){
+            return res.send({
+                status:0,
+                info:'未鉴权认证'
+            })
+        }
+        /* ****** */
+    }
+    ```
+
+##### 实战项目源码
+- [一起观摩大神吧](https://github.com/vczero/toilet)
