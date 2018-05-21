@@ -33,10 +33,10 @@ categories: 编程
 	require('echarts/theme/shine') // 引入主题
 	methods(){
 		drawLine(){
-			let myChart = this.$echarts.init(document.getElementById('myChart'),'主题')
+		let myChart = this.$echarts.init(document.getElementById('myChart'),'主题')
 			let option = {} //参数配置
 			myChart.setOption(option); //初始化
-      		myChart.resize()//自适应大小
+			myChart.resize()//自适应大小
 		}
 	}
 </script>
