@@ -29,7 +29,7 @@ categories: 编程
 
 - 经过一番度娘果然有很多人遇到和我一样的问题，[链接](https://segmentfault.com/q/1010000009360389)
 
-- 解决方法各说云词，本人也没有一一去验证，我只采用了下面这个方法，有效，css样式异常问题解决
+- 解决方法各说云词，本人也没有一一去验证，我只采用了下面这个方法，有效，css样式异常问题解决, 但此方法会导致移动端部分手机rem失效，css加载异常
 
 ```javascript
 optimize-css-assets-webpack-plugin这个插件的问题
@@ -39,4 +39,23 @@ new OptimizeCSSPlugin({
     ? { safe: true, map: { inline: false } }
     : { safe: true }
 }),
+```
+- 这中方法测试也有效果 [链接](https://blog.csdn.net/qq_25335529/article/details/80268309)
+```css
+/*! autoprefixer: off */
+-webkit-box-orient: vertical;
+/* autoprefixer: on */
+
+.user-info {
+    margin: 5px 10px;
+    font-size: .8em;
+    text-indent: 2em;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 ```
