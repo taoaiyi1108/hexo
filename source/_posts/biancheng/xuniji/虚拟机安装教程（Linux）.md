@@ -12,7 +12,7 @@ categories: 编程
 - 软件 
     - VMware Workstationa 网上资源众多[下载地址](https://www.vmware.com/cn/products/workstation-pro.html)
     - CentOS-6.8-x86_64-minimal(linux系统)[下载地址](https://pan.baidu.com/s/1bNg2RXbxvew5pV5zAG4TLA)
-    -  x-shell  网上资源众多[下载地址（百度软件中心）](http://rj.baidu.com/soft/detail/15201.html?ald)
+    -  x-shell  网上资源众多[下载地址](http://www.netsarang.com/download/down_xsh6.html)
     - 可视化文件上传工具(如果你对linux操作不是很六的话)，这只是其中一个工具，其他的请自行百度[下载地址](https://filezilla-project.org/)
 
 #### 安装 
