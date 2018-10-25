@@ -2,9 +2,10 @@
 title: 前端JS实现复制内容
 date: 2018-09-29 17:06:36
 tags: js知识点
-categories:
+categories: 编程
 ---
-<h4>点击按钮实现复制功能</h4>
+
+点击按钮实现复制功能
 
 <!-- more -->
 

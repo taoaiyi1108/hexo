@@ -4,7 +4,7 @@ date: 2018-08-27 09:45:40
 tags: vue
 categories: 编程
 ---
-<h4>vue中过滤器的几种用法</h4>
+vue中过滤器的几种用法
 
 <!-- more -->
 

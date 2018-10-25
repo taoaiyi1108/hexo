@@ -6,7 +6,7 @@ tags:
 	- echarts
 categories: 编程
 ---
-<h4>Vue中使用echarts</h4>
+Vue中使用echarts
 
 <!-- more -->
 
@@ -23,22 +23,22 @@ categories: 编程
 #### 使用
 ```html
 <template>
-	<div id='myChart'></div>
+    <div id='myChart'></div>
 </template>
 ```
 
 ```javascript
 <script type="text/ecmascript-6">
-	require('echarts/map/js/world')//引入地图
-	require('echarts/theme/shine') // 引入主题
-	methods(){
-		drawLine(){
-		let myChart = this.$echarts.init(document.getElementById('myChart'),'主题')
-			let option = {} //参数配置
-			myChart.setOption(option); //初始化
-			myChart.resize()//自适应大小
-		}
-	}
+    require('echarts/map/js/world')//引入地图
+    require('echarts/theme/shine') // 引入主题
+    methods(){
+        drawLine(){
+        let myChart = this.$echarts.init(document.getElementById('myChart'),'主题')
+            let option = {} //参数配置
+            myChart.setOption(option); //初始化
+            myChart.resize()//自适应大小
+        }
+    }
 </script>
 ```
 ```css

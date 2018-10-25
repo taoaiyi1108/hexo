@@ -6,11 +6,10 @@ tags:
     - vueresouce
 categories:
 ---
-<h4>文章摘要</h4>
+在vue-cli中使用vue-resource的两种方式：
 
 <!-- more -->
 
-- 在vue-cli中使用vue-resource的两种方式：
 
 - 在component中使用：
 ```JavaScript

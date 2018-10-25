@@ -13,13 +13,13 @@ categories: 编程
 	- 图片的路径 可以用 `import imgPath from '../static/img/play.png'`适合于单个图片
 	- 图片过多时建议在data中
 ```javascript
-	data(){
-		return{
-			imgs:['static/paly.png','static/go.png'] // 不用../../ 直接 static 就可以了
-		}
-	}
-
-	<img :src="imgs[0]"/>
+    data(){
+         return{
+             imgs:['static/paly.png','static/go.png'] // 不用../../ 直接 static 就可以了
+         }
+     }
+     
+    <img :src="imgs[0]"/>
 ```
 
 配置文件中更改打包路径

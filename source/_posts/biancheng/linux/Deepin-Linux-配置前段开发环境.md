@@ -6,7 +6,7 @@ tags:
     - Linux
 categories: 编程
 ---
-<h4>让初学者体验Linux系统飞一般的感觉，Mac的感觉</h4>
+让初学者体验Linux系统飞一般的感觉，Mac的感觉
 
 <!-- more -->
 ##### Deepin 前端环境搭建，[原文链接](https://blog.csdn.net/fungleo/article/details/78434813)

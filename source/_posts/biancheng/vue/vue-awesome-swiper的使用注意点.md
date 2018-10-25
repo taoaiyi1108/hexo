@@ -6,7 +6,7 @@ tags:
     - vue-awesome-swiper
 categories: 编程
 ---
-<h6>vueswiper插件vue-swesome-swiper配坑记录</h6>
+vueswiper插件vue-swesome-swiper配坑记录
 
 <!-- more -->
 

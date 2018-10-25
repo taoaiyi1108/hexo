@@ -4,7 +4,7 @@ date: 2018-03-08 15:45:33
 tags: React
 categories: 编程
 ---
-<h4>明白React组件的生命周期就是这么简单</h4>
+明白React组件的生命周期就是这么简单
 
 <!-- more -->
 

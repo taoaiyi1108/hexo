@@ -4,7 +4,7 @@ date: 2018-05-02 15:00:22
 tags: node
 categories: 编程
 ---
-#### 使用express搭建node服务
+使用express搭建node服务
 
 <!-- more -->
 ##### 安装express

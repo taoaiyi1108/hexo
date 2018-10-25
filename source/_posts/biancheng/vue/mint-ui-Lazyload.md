@@ -5,8 +5,9 @@ tags:
 	- vue
 	- mint-ui
 categories: 编程
-
 ---
+
+<!-- more -->
 
 ### [官方文档](http://mint-ui.github.io/docs/#/zh-cn2/lazyload)
 - 在官方使用手册上，结合本人的爬坑之旅加以补充、
