@@ -42,6 +42,7 @@ categories: 编程
 <div align=center>
 ![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-5.png)</br>
 </div>
+        - let在同作用域中不可以重复定义;
 
 - 定义常量const  一旦被赋值以后就再也不能被修改了
 	- 注意：const必须给初始值，因为以后就没法赋值了，所以声明的时候一定得有值
@@ -80,36 +81,36 @@ categories: 编程
 		- json对象的属性名不要修改
 	- 解构赋值还可以给个默认值：
 ```javascript
-	var {time=12} = {}  console.log(time)  //12
-	// 用法：
-	function（obj，json，options）{
-		options = options || {}
-		options.time = option.time || 300
-		}
-	function（obj，json，{time = 300} = {}）{
-	
-	}
+    var {time=12} = {}  console.log(time)  //12
+    // 用法：
+    function（obj，json，options）{
+        options = options || {}
+        options.time = option.time || 300
+        }
+    function（obj，json，{time = 300} = {}）{
+    
+    }
 ```
 
 - 复制数组
 ```javascript
-	var arr = [1,2,3]
-	arr1 = arr 
-	arr1.pop() 
-	console.log(arr,arr1)  // [1,2],[1,2] 引用    方法不可取
-	// a、循环
-	for(var i = 0; i < arr.length;i++){
-	arr1.push(arr[i])
-	}
-	arr.pop()
-	console.log(arr,arr1) //[1,2],[1,2,3]
-	// b、Array.from(arr)实现数组复制
-	var arr1 = Array.from(arr)
-	arr.pop()
-	console.log(arr,arr1)  //[1,2],[1,2,3]
-	// c、var arr1 = [...arr]
-	arr.pop()
-	console.log(arr,arr1)  //[1,2],[1,2,3]
+    var arr = [1,2,3]
+    arr1 = arr 
+    arr1.pop() 
+    console.log(arr,arr1)  // [1,2],[1,2] 引用    方法不可取
+    // a、循环
+    for(var i = 0; i < arr.length;i++){
+    arr1.push(arr[i])
+    }
+    arr.pop()
+    console.log(arr,arr1) //[1,2],[1,2,3]
+    // b、Array.from(arr)实现数组复制
+    var arr1 = Array.from(arr)
+    arr.pop()
+    console.log(arr,arr1)  //[1,2],[1,2,3]
+    // c、var arr1 = [...arr]
+    arr.pop()
+    console.log(arr,arr1)  //[1,2],[1,2,3]
 ```
 <div align=center>
 ![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-10.png)</br>
@@ -138,32 +139,32 @@ categories: 编程
 <div align=center>
 ![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-13.png)
 </div>
-		- 遍历Map不能使用 for in，没有效果  使用 for of
+	    - 遍历Map不能使用 for in，没有效果  使用 for of
 ```javascript
-	for（var name of map）{
-		console.log（name）
-	}
-	for（var [key,value] of map）{
-		console.log（key,value）
-	}
+    for（var name of map）{
+        console.log（name）
+    }
+    for（var [key,value] of map）{
+        console.log（key,value）
+    }
 ```
 		- 默认循环的是
 ```javascript
-	for（var name of map.entries（））{
-		console.log（name）
-	}
-	for（var [key,value] of map.entries（））{
-		console.log（key,value）
-	}
+    for（var name of map.entries（））{
+        console.log（name）
+    }
+    for（var [key,value] of map.entries（））{
+        console.log（key,value）
+    }
 ```
 		- 循环只输出单个  key  或 value
 ```javascript
-	for（var key of map.keys（））{
-		console.log（key）//a,b,c,d
-	}
-	for（var val of map.values（））{
-		console.log（val）
-	}
+    for（var key of map.keys（））{
+        console.log（key）//a,b,c,d
+    }
+    for（var val of map.values（））{
+        console.log（val）
+    }
 ```
 	- for of 循环 数组  默认循环的是值，要想循环缩影 for（var key of arr.keys())
 	- 索引和值都循环：for (var some of arr.entries()){}
@@ -173,89 +174,92 @@ categories: 编程
 		- this问题  this指向的是window 
 		-  arguments是不可以使用的
 ```javascript
-	var json = {
-		a:2，
-		b:3,
-		show:()=>{
-			console.log（this.a）//报错  undefined
-	}
-		josn.show()
-		
-		function show(){
-			console.log(arguments)
-		}
-		show()//[1,2,3]
-		
-		var  show = ()=>{
-			console.log(arguments)
-		}
-		show(1,2,3)//arguments is not defined
+    var json = {
+        a:2,
+        b:3,
+        show:()=>{
+            console.log(this.a)//报错  undefined
+        }
+    }
+    json.show();
+    
+    function show(){
+        console.log(arguments)
+    }
+    show()//[1,2,3]
+    
+    var  show = ()=>{
+        console.log(arguments)
+    }
+    show(1,2,3)//arguments is not defined
 ```
 
 - 对象
 	- 对象语法简洁化
 	- 单体模式
 ```javascript
-	var name = 'ls';
-	var age = 101;
-	var person = {
-		name,
-		age,
-		showName(){
-			return this.name
-		}
-		showAge(){
-			return this.age
-		}
-	}
-	console.log(person.showName())
+    var name = 'ls';
+    var age = 101;
+    var person = {
+        name,
+        age,
+        showName(){
+            return this.name
+        },
+        showAge(){
+            return this.age
+        }
+    }
+    console.log(person.showName())
 ```
 	- 面向对象
-		- es6之前
 ```javascript
-	function Person(name,age){  //即是类  又是构造函数
-		this.name = name;
-		this.age = age
-	}
-	Person.prototype.showName = function(){
-		return.this.name
-	}
-	Person.prototype.showAge = function(){
-		return.this.age
-	}
-	var p1 = new Person('abc',101)
-	console.log(p1.showName())
+    // es6之前
+    function Person(name,age){  //即是类  又是构造函数
+        this.name = name;
+        this.age = age
+    }
+    Person.prototype.showName = function(){
+        return this.name
+    }
+    Person.prototype.showAge = function(){
+        return this.age
+    }
+    var p1 = new Person('abc',101)
+    console.log(p1.showName())
 ```
-	- ES6中彻底区分开了
-		-  类class
-		-  构造函数 constructor  生成完实例以后，就自己执行的函数
-```javascript
-	class Person{  //这才是一个真正的类
-		constructor（name，age）{
-			this.name = name;
-			this.age = age
-		}
-		showName(){
-			return this.name
-		}
-		showAge(){
-			return this.age
-		}
-	}
-	var p1 = new Person('aaa',101)
-	var p2 = new Person('bbb',102)
-	console.log(p1.name)
-	console.log(p1.showName())
 	
-	console.log(p1.showName == p2.showName) //true
-	p1.constructor == Person  //true
+```javascript
+// ES6中彻底区分开了
+// 	  类class
+// 	  构造函数 constructor  生成完实例以后，就自己执行的函数
+
+class Person{  //这才是一个真正的类
+    constructor(name,age){
+        this.name = name;
+        this.age = age
+    }
+    showName(){
+        return this.name
+    }
+    showAge(){
+        return this.age
+    }
+}
+var p1 = new Person('aaa',101)
+var p2 = new Person('bbb',102)
+console.log(p1.name)
+console.log(p1.showName())
+
+console.log(p1.showName == p2.showName) //true
+p1.constructor == Person  //true
 ```
 	- 函数给默认值
 ```javascript
-	function move(obj='对象是必须要填的',json,options){
-		console.log(obj)
-	}
-	move()// 对象是必须要填的
+    function move(obj='对象是必须要填的',json,options){
+        console.log(obj)
+    }
+    move()// 对象是必须要填的
 ```
 
 - 继承
@@ -263,26 +267,27 @@ categories: 编程
 <div align=center>
 ![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-14.png)
 </div>
+
 ```javascript
-	function Worker(name,age){
-		Person.apply(this,arguments)
-	}
-	Worker.prototype = new Person()
-	var w1 = new Worker('aaa',101)
-	console.log(w1.showName())//aaa
+    function Worker(name,age){
+        Person.apply(this,arguments)
+    }
+    Worker.prototype = new Person()
+    var w1 = new Worker('aaa',101)
+    console.log(w1.showName())//aaa
 ```
-	- es6之前  子类.prototype = new 父类();
-	- ES6  继承  class Worker extends Person{}
+    - es6之前  子类.prototype = new 父类();
+    - ES6  继承  class Worker extends Person{}
 <div align=center>
 ![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-15.png)
 </div>
 
 ```javascript
-	class Worker extends Person{
-		constructor(){
-			super()//再次调用父级构造
-		}
-	}
+    class Worker extends Person{
+        constructor(){
+            super()//再次调用父级构造
+        }
+    }
 ```
 <div align=center>
 ![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-16.png)
@@ -314,54 +319,54 @@ categories: 编程
 	- 异步：多个操作可以同时进行  Ajax  
 		- pending（等待，处理中）---> Resolve（完成、fullFiled）--->Rejected（拒绝，失败）
 		
-```javascript
-	var p1 = new Promise(function(resolve,reject){   //  回调函数会立即执行
-		//resolve 成功了
-		//reject 失败了
-	})
-	
-	var p1 = new Promise(function(resolve,reject){
-		if（异步处理成功了）{
-			resolve（成功的数据）
-		}else{
-			reject（失败的原因）
-		}
-	})
-	
-	p1.then(成功（resolve）,失败（reject）)  //返回的还是一个Promise对象 可以继续往后走
+    ```javascript
+    var p1 = new Promise(function(resolve,reject){   //  回调函数会立即执行
+        //resolve 成功了
+        //reject 失败了
+    })
+    
+    var p1 = new Promise(function(resolve,reject){
+        if(异步处理成功了){
+            resolve(成功的数据)
+        }else{
+            reject(失败的原因)
+        }
+    })
+    
+    p1.then(成功(resolve),失败(reject))  //返回的还是一个Promise对象 可以继续往后走
 ```
 - 案例：
 
 ```javascript
-	var p1 = new Promise(function(resolve,reject){   //  回调函数会立即执行
-		resolve（1）
-	})；
-	p1.then(function(value){  //value 数据
-			alert('成功了'+ value)
-		},function(){
-			alert("失败了")
-	})
-	
-	
-	var p1 = new Promise(function(resolve,reject){   //  回调函数会立即执行
-		reject（2）
-	})；
-	p1.then(function(value){  //value 数据
-			alert('成功了'+ value)
-		},function(){
-			alert("失败了"+ value)
-	})
-	
-	var p1 = new Promise(function(resolve,reject){   //  回调函数会立即执行
-		resolve（1）
-	})；
-	p1.then(function(value){  //value 数据
-		return value +1；
-		},function(){
-			alert("失败了")
-		}).then(function(value){
-			console.log(value) // 此处的value就是 上一个成功return的数据
-	})
+    var p1 = new Promise(function(resolve,reject){   //  回调函数会立即执行
+        resolve（1）
+    })；
+    p1.then(function(value){  //value 数据
+            alert('成功了'+ value)
+        },function(){
+            alert("失败了")
+    })
+    
+    
+    var p1 = new Promise(function(resolve,reject){   //  回调函数会立即执行
+        reject（2）
+    })；
+    p1.then(function(value){  //value 数据
+            alert('成功了'+ value)
+        },function(){
+            alert("失败了"+ value)
+    })
+    
+    var p1 = new Promise(function(resolve,reject){   //  回调函数会立即执行
+        resolve（1）
+    })；
+    p1.then(function(value){  //value 数据
+        return value +1；
+        },function(){
+            alert("失败了")
+        }).then(function(value){
+            console.log(value) // 此处的value就是 上一个成功return的数据
+    })
 ```
 
  - catch    --->用来捕获错误
@@ -369,7 +374,7 @@ categories: 编程
 ```javascript
 	var p1 = new Promise(function(resolve,reject){
 		resolve('成功了')
-	}
+	})
 	p1.then(function(value){
 		console.log(value)
 		throw '出现错误了'   //抛出错误的
@@ -383,38 +388,38 @@ categories: 编程
 		- 所有的promise对象都正确走成功，否则只要有一个错误，是失败了
 		
 ```javascript
-	var p1 = Promise.resolve(3)
-	var p2 = Promise.reject(5)
-	Promise.all([true,p1,p2]).then(function(value){
-		console.log('成功了'+value)
-	},function(value){
-		console.log('错误了'+value)
-	})
+    var p1 = Promise.resolve(3)
+    var p2 = Promise.reject(5)
+    Promise.all([true,p1,p2]).then(function(value){
+        console.log('成功了'+value)
+    },function(value){
+        console.log('错误了'+value)
+    })
 ```
 - race   ————返回也是一个promise对象
 	- 最先能执行的promise结果  哪个最快就用哪个
 
 ```javascript
-	var p1 = new Promise(function(resolve,reject){
-		setTimeout(resolve,500,'one')
-	})
-	var p2 = new Promise(function(resolve,reject){
-		setTimeout(resolve,100,'two')
-	})
-	Promise.race([p1,p2]).then(function(value){
-		console.log(value) //two
-	})
+    var p1 = new Promise(function(resolve,reject){
+        setTimeout(resolve,500,'one')
+    })
+    var p2 = new Promise(function(resolve,reject){
+        setTimeout(resolve,100,'two')
+    })
+    Promise.race([p1,p2]).then(function(value){
+        console.log(value) //two
+    })
 ```
 -  reject   resolve
 	- Promise.reject()    生成一个错误的promise对象
 	- Promise.resolve()   生成一个成功的promise对象
 
 ```javascript
-	Promise.reject('这是错误的信息').then(;function(){
-	
-	},function(res){
-		console.log(res)  //这是错误的信息
-	})
+    Promise.reject('这是错误的信息').then(function(){
+    
+    },function(res){
+        console.log(res)  //这是错误的信息
+    })
 ```
 
 - Promise.resolve()
@@ -422,10 +427,10 @@ categories: 编程
 	- Promise.resolve(promise)
 
 ```javascript
-	var p1 = Promise.resolve(3)
-	var p2 = Promise.resolve(p1)
-	p2.then(function(value){
-		console.log(value)	//3
-	})  
+    var p1 = Promise.resolve(3)
+    var p2 = Promise.resolve(p1)
+    p2.then(function(value){
+        console.log(value)	//3
+    })  
 ```
 

@@ -86,10 +86,10 @@ categories: 编程
 
 ### 将直线进行封装
 ```javascript
-	function Line () {}
-
-	var line = new Line( x0, y0, x1, y1 );
- 	line.stroke();
+    function Line () {}
+    
+    var line = new Line( x0, y0, x1, y1 );
+    line.stroke();
 ```
 ### 绘制形状
 - 矩形
@@ -123,12 +123,12 @@ categories: 编程
 	- angle 角度
 	- radian 弧度
 ```javascript
-	function toAngle ( radian ) {
-		return radian * 180 / Math.PI; 
-	}
-	function toRadian ( angle ) {
-		return angle * Math.PI / 180;
-	}
+    function toAngle ( radian ) {
+        return radian * 180 / Math.PI; 
+    }
+    function toRadian ( angle ) {
+        return angle * Math.PI / 180;
+    }
 ```
 ### 角度的坐标
 	水平向右的角度是 0 度, 或 0 弧度
