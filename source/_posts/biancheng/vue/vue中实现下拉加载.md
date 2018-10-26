@@ -121,8 +121,8 @@ categories: 编程
           if(this.$refs.wrap){
              var wrap = this.refs.wrap;
              var list = this.refs.list;  
-              //scrillHeight 整个元素的高度（包括带滚动条的隐蔽的地方） 换句话说就是元素包括内容的高度
-              //offsetHeight 任何一个元素的高度包括边框和填充，但不是边距  换句话说就是元素本身的高度
+              /*scrillHeight 整个元素的高度（包括带滚动条的隐蔽的地方） 换句话说就是元素包括内容的高度
+              offsetHeight 任何一个元素的高度包括边框和填充，但不是边距  换句话说就是元素本身的高度*/
               if(wrap.scrollHeight - wrap.scrollTop == wrap.offsetHeight){
                   /*加载更多*/
                   this.getmore();
