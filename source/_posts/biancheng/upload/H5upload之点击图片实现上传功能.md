@@ -38,7 +38,7 @@ $('.upload-item').on("click",function(){
         }else{
             var file_reader = new FileReader();
             file_reader.onload = (function(){
-                var image_url = this.result;        // 这是图片的路径
+                var image_url = this.result;        /*这是图片的路径*/
                 $this.css('background-image', "url("+image_url+")");
     
             });
