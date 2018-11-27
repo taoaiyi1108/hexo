@@ -68,8 +68,8 @@ url：http://localhost/php/test/01.php?abc=123
 
 ### form 表单默认是get请求  想要是想post请求 需要在method= ’post‘
 <div align=center>
-<img src='http://p040q6o73.bkt.clouddn.com/image/boke/php/php-1.png'>
+<img src='https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/php/php-1.png'>
 <div/>
 <div align=center>
-<img src='http://p040q6o73.bkt.clouddn.com/image/boke/php/php-2.png'>
+<img src='https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/php/php-2.png'>
 <div>

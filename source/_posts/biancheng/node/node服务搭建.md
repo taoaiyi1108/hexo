@@ -43,7 +43,7 @@ categories: 编程
     module.exports = router;
     ```
     + 输出效果图
-    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-1.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/node/node-express-1.png)
 - json对象输出
     + 修改route/index.js里面的代码
     ```javascript
@@ -60,7 +60,7 @@ categories: 编程
     module.exports = router;
     ```
     + 输出效果图
-    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-2.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/node/node-express-2.png)
 
 ---
 #### 实战项目走起
@@ -69,22 +69,22 @@ categories: 编程
 ##### 开发node service完成一个项目的前提
 - 服务如何去架构？数据库选择？使用哪种orm模型？是否需要安全认证？ 用户机制
 - 举例：
-    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-3.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/node/node-express-3.png)
 
 ##### 接口设计
 - 前四个接口有个共同特征就是url path是一致的，后面的参数不一致，参数代表的是一个一个对应json的文件名，运行一段js，读取参数返回对应json文件数据
-    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-4.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/node/node-express-4.png)
 
 ##### 读取数据模块
 - 在改成的public文件夹下新建dataw文件夹存放json数据文件
     + it.json 注意新建的json文件中即便是空也必须有一个 `[]` ,否则会因为获取到的数据是非json格式而报错
 - data文件夹下新建data.js,我们已知node开发一个服务，只需要在route/index.js中return res.sendd返回一个json就可以了
 - 拷贝route/index.js中的代码到data.js中
-    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-5.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/node/node-express-5.png)
 - 修改入口文件app.js中的路由设置
     - 添加我们的路由 `var var data = require('./routes/data');`
     - 使用 `app.use('/data', data);`
-    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-6.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/node/node-express-6.png)
 - 修改data.js 构造j接口 `data/read?type=it`
 ```javascript
 /* data.js*/
@@ -286,7 +286,7 @@ module.exports = router;
     }
     ```
     + 回头查看md.json文件，也有了我们写入的数据
-    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-7.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/node/node-express-7.png)
 
 ##### 阅读模块写入接口
 - 这个接口不同于之前的写入接口，我们单独开发
@@ -331,12 +331,12 @@ router.post('/write_config',function(req,res,next){
 ##### 设计
 - 后台系统只提供写入的操作不提供删除操作
 - 轻量化
-    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-8.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/node/node-express-8.png)
 
 ##### 登录服务
 - 为了开发登录服务，我们需要支持session 安装支持session的插件`npm install express-session --save`
 - 在入口文件app.js引入使用类库
-    ![](http://p040q6o73.bkt.clouddn.com/image/node/node-express-9.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/node/node-express-9.png)
 ```javascript
 //参考别人的 https://github.com/vczero/toilet/blob/master/service/app.js
 app.use(session({

@@ -7,13 +7,13 @@ categories: 编程
 ---
 ### 属性查找原则
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/js-object/js-object-1.png)</br>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/js-object/js-object-2.png)</br>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/js-object/js-object-3.png)</br>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/js-object/js-object-4.png)
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/js/js-object-1.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/js/js-object-2.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/js/js-object-3.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/js/js-object-4.png)
 </div>
 
 ### 继承
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/js-object/js-object-5.png)
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/js/js-object-5.png)
 </div>

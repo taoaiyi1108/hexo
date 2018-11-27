@@ -29,7 +29,7 @@ categories: 编程
 - Ubuntu 16.04 Server的安装步骤[具体教程移步此处](https://www.linuxidc.com/Linux/2017-11/148341.htm)
     - 注意：VMware Workstationa创建虚拟机的时候会有先创建虚拟机再选择镜像文件和同步配置这两种途径，当然第一种适用于自定义的高手，如果你是小白建议第二种方式安装，系统会全自动安装不需要你去配置，当然你也可以按照上面的安装教程自定义安装；
   <div align=center>
-    ![](http://p040q6o73.bkt.clouddn.com/image/xuniji-1.png)
+    ![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/xuniji/xuniji-1.png)
   </div>
 
 
