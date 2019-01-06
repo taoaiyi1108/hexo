@@ -27,20 +27,20 @@ categories: 编程
 		- let定义的变量只能在代码块里面使用
 		- var 定义的变量只有函数作用域
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-1.png)</br>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-2.png)</br>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-3.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-1.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-2.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-3.png)</br>
 </div>
 		- let具备块级作用域   块级作用域就是一个匿名函数立即调用 
 		- let定义的变量不允许重复声明
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-4.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-4.png)</br>
 </div>
 		- 总结：let才接近其他语言的变量
 	- let用处：
 		- 封闭空间
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-5.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-5.png)</br>
 </div>
         - let在同作用域中不可以重复定义;
 
@@ -55,19 +55,19 @@ categories: 编程
 		- var a = ``  字符串模板
 		- ${a}就可以
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-6.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-6.png)</br>
 </div>
 
 - 解构赋值
 	- var [a,b,c] = [12,5,14]
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-7.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-7.png)</br>
 </div>
 	- 与JSON配合
 		- var {a,b,c} = {a;12,b;14,c;15}
 		- var {a,b,c} = {b;14,a;12,c;15}  跟顺序无关
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-8.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-8.png)</br>
 </div>
 	- 模式匹配:
 		- var [a,[b,c],d] = [12,[1,2],5]
@@ -76,7 +76,7 @@ categories: 编程
 		- var [{a,e},[b,c],d] = [{e:'eee',a:'aaaa'},[1,2],5]
 		- console.log(a,b,c,d)//aaa,1,2,5,eee
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-9.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-9.png)</br>
 </div>
 		- json对象的属性名不要修改
 	- 解构赋值还可以给个默认值：
@@ -113,14 +113,14 @@ categories: 编程
     console.log(arr,arr1)  //[1,2],[1,2,3]
 ```
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-10.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-10.png)</br>
 </div>
 
 - 循环
 	- for of 循环  遍历（迭代）整个对象  表现类似于 for in  循环数组和Map对象
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-11.png)</br>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-12.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-11.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-12.png)</br>
 </div>
 	- for of 循环可以循环数组，不可以循环json 
 		- 真正的目的为了循环Map对象
@@ -137,7 +137,7 @@ categories: 编程
 	map.delete(name)  //返回值是一个布尔值
 ```
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-13.png)
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-13.png)
 </div>
 	    - 遍历Map不能使用 for in，没有效果  使用 for of
 ```javascript
@@ -265,7 +265,7 @@ p1.constructor == Person  //true
 - 继承
 	- 原型继承
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-14.png)
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-14.png)
 </div>
 
 ```javascript
@@ -279,7 +279,7 @@ p1.constructor == Person  //true
     - es6之前  子类.prototype = new 父类();
     - ES6  继承  class Worker extends Person{}
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-15.png)
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-15.png)
 </div>
 
 ```javascript
@@ -290,12 +290,12 @@ p1.constructor == Person  //true
     }
 ```
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-16.png)
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-16.png)
 </div>
 	- 应用：队列类
 <div align=center>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-17.png)</br>
-![](http://p040q6o73.bkt.clouddn.com/image/boke/es6/es6-18.png)
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-17.png)</br>
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/es6/es6-18.png)
 </div>
 
 - 模块化：
