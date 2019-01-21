@@ -31,6 +31,9 @@ export default{
                 console.log("obj.a: "+val.a, oldVal.a);/*但是这两个值打印出来却都是一样的*/
             },
             deep:true
+        },
+        "obj.a":function(nval,oval) {
+            /*这样就可以watch obj.a 的值变化了*/
         }
         /*
         watch中不能使用箭头函数的方法，例如

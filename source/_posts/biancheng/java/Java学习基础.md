@@ -158,7 +158,7 @@ Java学习基础-笔记
 				```java
                     char num = 'A';
                     System.out.println(num + 1); /*66*/
-				``` 
+                ```
 			- byte/short/char这三种类型在运算的时候都会被首先提升为int类型，然后再计算
 			```java
                 byte num = 40;
@@ -375,10 +375,10 @@ Java学习基础-笔记
         - 使用建议：如果不确定数组中的具体内容，用动态初始化，否则，已经确定了具体的内容，用静态初始化。
         ```java
           int[] arrayA;
-          arrayA = int[5];
+          arrayA =  new int[5];
     
           int[] arrayB;
-          arrayB = int[]{1,2,3};
+          arrayB = new int[]{1,2,3};
         ```
     - 数组的获取：数组名称[索引值]
     - 如果使用动态初始化数组，其中的元素将会有一个初始值，规则如下：
@@ -414,3 +414,95 @@ Java学习基础-笔记
       }
     ```
 
+- Java权限修饰符
+    - `public > protected > (default) > private`
+    ```
+                        public > protected > (default) > private
+        
+        同一个类            YES       YES         YES        YES   (我自己)
+        同一个包            YES       YES         YES        NO    (我邻居)
+        不同包子类           YES       YES         NO         NO   (我儿子)  
+        不同包非子类         YES       NO         NO         NO    (陌生人)
+    ```
+
+- Java-内部类
+    - 一个类的内部包含一个类
+    - 分类
+        - 成员内部类
+        - 局部内部类(包含匿名内部类)
+    - 成员内部类
+        - 格式：修饰符 class 外部类名称{ 修饰符 class 内部类名称{ // ... } }
+        - 注意：内用外随意访问，外用内，需要有内部对象
+        - 使用：
+            - 间接使用：在外部类方法中，使用内部类，然后main只是调用外部类的方法
+            - 直接使用：
+                - 公式：类名称 对象名 = new 外部类名称();
+                - 格式：外部类名称.内部类名称 对象名 = new 外部类名称().new 内部类名称();
+    - 内部类同名变量访问   
+    ```java
+      public class Outer {
+          int num = 10;
+          public class Inter {
+              int num = 20;
+              public void method(){
+                  int num = 30;
+                  System.out.println(num); /*方法变量*/
+                  System.out.println(this.num); /*内部类变量*/
+                  System.out.println(Outer.this.num); /*外部类变量*/
+              }
+          }
+      }
+    
+      /*访问*/
+      public class Demo {
+          public static void main(String[] args){
+              new Outer().new Inter().method();
+          }
+      }
+    ```
+    - 局部内部类：一个类定义在一个方法的内部
+    ```java
+      /*定义*/
+      public class Outer {
+          public void method(){
+              class Inter {
+                  int num = 10;
+                  public void inMethod(){
+                      System.out.println(num);  
+                  }
+              }
+              Inter inter = new Inter();
+              inter.inMethod();
+          }
+      }
+    ```
+    ```java
+      /*使用*/
+    public class Demo {
+      public static void main(String[] args){
+          Outer outer = new Outer();
+          outer.method();
+      }        
+    }
+    ```
+    - 局部内部类final问题
+        - 局部内部类，如果希望访问坐在方法的局部变量，那么这个局部变量就必须是【有效final的】
+        - 从 Java 8+ 开始，只要局部变量事实不变，那么final关键字可以省略
+    - 匿名内部类
+        - 如果接口的实现类(或者是父类的子类)只需要使用唯一的一次，那么这种情况下，就可以省略掉该类的定义，而改为使用【匿名内部类】
+        - 定义格式
+            - 接口名称 对象名 = new 接口名称(){ //覆盖重写所有抽象方法  }; 末尾;不可以丢失
+            ```java
+              MyInterface myInterface = new MyInterface() {
+                  @Override
+                  public void method() {
+                      System.out.println();
+                  }
+              };
+            ```
+        - 对格式 `new 接口名称(){...}`进行解析
+            - new 代表对象创建动作
+            - 接口名称就是匿名内部类需要实现哪个接口
+            - {...}这才是匿名内部类的内容
+        - 注意事项
+            - 匿名内部类在创建对象的时候，只能使用唯一一次
