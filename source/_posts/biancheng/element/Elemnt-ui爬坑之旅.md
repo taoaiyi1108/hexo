@@ -41,7 +41,8 @@ safeProductionCode: [
     export default  {
         methods:{
             /*把每一行的索引放进row*/
-            tableRowClassName(row, index){
+            /*注意形参是一个对象哦*/
+            tableRowClassName({row, index}){
                 row.index = index;
             },
             /*在获取row的index*/

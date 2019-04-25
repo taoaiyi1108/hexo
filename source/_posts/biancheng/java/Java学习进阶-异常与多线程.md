@@ -1,7 +1,7 @@
 ---
 title: Java学习进阶-异常与多线程
 date: 2019-02-14 21:49:28
-tags: java
+tags: Java
 categories: 编程
 ---
 Java进阶学习-异常与多线程
@@ -429,6 +429,89 @@ Java进阶学习-异常与多线程
                }
             ```
 - Lambda表达式
+    - 面向对象思想：做一件事情，找一个能解决这个事情的对象，调用对象的方法，完成事情
+    - 函数式编程思想：只要能获取到结果，谁去做的，怎么做的都不重要，重要的是结果，不只是过程
+    - 标准格式 `(参数类型 参数名称) -> {代码语句}`
+    ```java
+      /*案例1 无参数无返回值*/
+      public interface Cook {
+          public abstract void meekFood();
+      }
+      public class DomeCook {
+          public static void main(String[] args) {
+              invokeCook(new Cook() {
+                  @Override
+                  public void meekFood() {
+                      System.out.println("吃饭了");
+                  }
+              });
+              /*使用Lambda表达式简化匿名内部类*/
+              invokeCook(() ->{
+                  System.out.println("吃饭了2");
+              });
+              /*简化省略*/
+              invokeCook(() -> System.out.println("吃饭了3"));
+          }
+          public static void invokeCook(Cook  cook){
+              cook.meekFood();
+          }
+      }
+      /*案例2 有参数有返回值*/
+      /*标准类 Person*/
+      public class PersonDemo {
+          public static void main(String[] args) {
+              Person[] arr = {
+                  new Person("张三",13),
+                  new Person("李四",16),
+                  new Person("王五",15),
+              };
+      
+              /*Arrays.sort(arr, new Comparator<Person>() {
+                  @Override
+                  public int compare(Person o1, Person o2) {
+                      return o1.getAge() - o2.getAge();
+                  }
+              });*/
+      
+              /*使用Lambda表达式简化匿名内部类*/
+              Arrays.sort(arr,(Person o1,Person o2)->{
+                  return o1.getAge() - o2.getAge();
+              });
+      
+              for (Person p : arr) {
+                  System.out.println(p);
+              }
+          }
+      }
+      /*案例3 */
+      public interface Sum {
+          public abstract int sum(int a, int b);
+      }
+      public class SumDome {
+          public static void main(String[] args) {
+              /*result(1, 2, new Sum() {
+                  @Override
+                  public int sum(int a, int b) {
+                      return a+b;
+                  }
+              });*/
+              /*使用Lambda表达式简化匿名内部类*/
+              result(1,2,(int a, int b) ->{
+                  return a+b;
+              });
+              /*简化省略*/
+              result(1,2,(a,b) -> a+b);
+          }
+      
+          public static void result(int a, int b, Sum sum){
+              int s = sum.sum(a,b);
+              System.out.println(s);
+          }
+      }
+    ```
+    - Lambda的使用前提
+        - Lambda必须具有接口，且接口有且只有一个抽象方法；
+        - 使用Lambda必须有上下文推断；
 
 
 
