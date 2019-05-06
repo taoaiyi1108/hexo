@@ -251,7 +251,7 @@ Entrypoint main = bundle.js /* 入口文件 */
     ```javascript
         module: {
             rules: [
-            {
+                {
                     test: /\.js$/,
                     exclude: /node_modules/, //exclude 排除
                     loader: "babel-loader",
@@ -375,4 +375,113 @@ Entrypoint main = bundle.js /* 入口文件 */
     const commonConfig = require('./webpack.common');
     const prodConfig = {}
     module.exports = merge(commonConfig, prodConfig);
+```
+
+##### Webpack 和 Code Splitting(代码分割)
+```javascript
+    /* 同步代码分割 */
+    optimization: {
+        splitChunks: {
+            chunks: 'all', // 代码分割
+        }
+    },
+    /* 异步代码分割  无需配置*/
+    npm install babel-plugin-dynamic-import-webpack -D
+
+    /* .babelrc */
+    "plugins": [
+		"babel-plugin-dynamic-import-webpack"
+    ]
+    /* index.js */
+    function getCommponent() {
+        return import('lodash').then((_) => {
+            var element = document.createElement('div');
+            element.innerHTML = _.join(['w', 'y', 't'], '-');
+            return element;
+        })
+    }
+
+    getCommponent().then(element => {
+        document.getElementById('root').appendChild(element)
+    });
+```
+
+##### SplitChunksPlugin 
+```javascript
+    npm install --save-dev @babel/plugin-syntax-dynamic-import
+    /* .babelrc */
+    "plugins": [
+		"plugin-syntax-dynamic-import"
+    ]
+    /* index.js */
+    import(/* webpackChunkName:"lodash" */'lodash')
+    /* webpack.common.js */
+    optimization: {  // 等价于 optimization:{} 默认配置 
+        splitChunks: {
+        chunks: 'async', // 代码分割只对异步生效  all 同步异步带都会代码分割
+        minSize: 30000, // 引入的模块大于30Kb会进行代码分割
+        maxSize: 0,
+        minChunks: 1, // 一个模块被使用多少次才被代码分割
+        maxAsyncRequests: 5, // 同时只能最多加载个5个模块 超过5个就不会进行代码分割
+        maxInitialRequests: 3,// 入口文件最多3个，超过就不会进行代码分割
+        automaticNameDelimiter: '~', // 文件生成的时候文件名称中间的连接符
+        name: true, // 打包后分割出来的代码自定义名字是否有效
+        cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/, // 想要同步代码分割就必须配置 异步的话 直接false
+                    priority: -10，
+                    filename:'vendors.js', // 代码分割后的输出的js文件名称
+                },
+                default: { // 引入模块 不在node_moudles中
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
+                    filename:'common.js'
+                }
+            }
+        }
+    }
+```
+
+##### Lazy Loading 懒加载 Chunk是什么？
+
+##### css代码分割
+```javascript
+    npm install --save-dev mini-css-extract-plugin  // 代码分割
+    npm install --save-dev optimize-css-assets-webpack-plugin // css代码压缩
+    /* webpack.common.js */
+    output:{
+        chunkFilename: '[name].chunk.js'
+    }
+    /* webpack.prod.js 该插件适合线上打包 */
+    const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+    const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+    plugins:[
+        new MiniCssExtractPlugin({
+            filename:'[name].css', // css直接被引用走 filename
+            chunkFilename:'[name].chunk.css' // css间接被引用走chunkFilename
+        })
+    ]
+    rules:[
+        {
+            test: /\.(css|scss)/,
+            use: [
+                MiniCssExtractPlugin.loader,
+                {
+                    loader: "css-loader",
+                    options: {
+                        importLoaders: 2, 
+                        modules: true, 
+                    }
+                },
+                'sass-loader', 
+                'postcss-loader',
+            ]
+        },
+    ]
+    optimization: {
+        minimizer: [
+            new OptimizeCSSAssetsPlugin({}) // css代码压缩
+        ]
+    },
 ```
