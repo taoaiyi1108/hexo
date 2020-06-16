@@ -22,3 +22,12 @@ document.addEventListener("visibilitychange", function() {
 
 
 
+> `Element.getBoundingClientRect() 方法返回元素的大小及其相对于视口的位置`
+
+```js
+document.getElementById('语法').getBoundingClientRect()
+```
+
+![](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/webapi/webapi-getBoundingClientReact.png)
+
+> `window.opener`判断页面是否通过`window.open`打开的
