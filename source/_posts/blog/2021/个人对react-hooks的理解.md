@@ -355,7 +355,7 @@ categories: '2021'
 ```
 
 ### useReducer
-- `useReducer` 和 `useState` 几乎是一样的，需要外置外置 `reducer` (全局)，通过这种方式可以对多个状态同时进行控制。
+- `useReducer` 是 `useState` 更为高级的一种解决方法，需要外置外置 `reducer` (全局)，通过这种方式可以对多个状态同时进行控制。
 - 仔细端详起来，其实跟 `redux` 中的数据流的概念非常接近
 
 ```js
