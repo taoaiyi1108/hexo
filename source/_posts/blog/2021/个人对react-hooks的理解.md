@@ -9,7 +9,7 @@ categories: '2021'
 <!-- more -->
 
 
-### 写在开头
+### 写在开头 [源码](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/react/react-hooks.zip)
 
 - 自己主要还是以`vue`开发为主，`react`项目也是做过一些，主要是以`class`组件的模式在开发，`react hooks`推出后虽说用过，也是写简单的使用，现阶段官方也是提倡使用`hooks`模式开发，自然有他的道理，我个人最近也是琢磨了许久，个人总结一下，后期复习用；
 - 自己才疏学浅在这里只是谈谈`react hooks`的使用场景，源码之类的就不详解了，有兴趣的同学找更牛逼的`blog`看。
@@ -100,7 +100,7 @@ categories: '2021'
         }
     }
 ```
-```js
+```jsx
     /* hooks 组件 */
     import React, { useState } from 'react'
     const UseState = () => {
@@ -108,11 +108,50 @@ categories: '2021'
         const [age, setAge] = useState(12)
         const [work, setWork] = useState({ name: '外卖员', time: '2020-12-12' })
 
+        const onClick = () => {
+            setWork({...work, name: '修理工'}) // setWork 是异步更新work的
+            console.log(work) // 那么此时的work并非最新的work
+        }
+
         return(<>
             <button onClick={() => setName('Jim')}>btn1</button>
             <button onClick={() => setAge(13)}>btn2</button>
-            <button onClick={() => setWork({...work, name: '修理工'})}>btn3</button>
+            <button onClick={() => onClick()}>btn3</button>
         </>)
+    }
+
+    /* useState 数据更新注意点 */
+    const Example = () => {
+        const [count, setCount] = useState(0);
+        const addClick = () => {
+            /* 
+                setCount(count++); 
+                error 不可以这么写: 类似于 setCount(count = count + 1); 
+                修改state只能通过setXXX的方法修改，这样的写法是直接去修改state, 自然会报错
+            */
+            setCount(count + 1); // setCount 是异步更新count
+            console.log(count); // 那么此时的count不是最新的值
+        }
+        const subClick = () => {
+            setCount((count) => {
+                // 这里的count是参数，不是state的count
+                count--;
+                console.log(count); // 此时的count 是最新的值
+                return count;
+            })
+        }
+
+        console.log(count); // 此时的count是最新的值
+
+        return (
+            <div className="App-header item-page">
+                <div>
+                    <button onClick={() => addClick()}>+</button>
+                    <h1>{count}</h1>
+                    <button onClick={() => subClick()}>-</button>
+                </div>
+            </div>
+        )
     }
 ```
 
@@ -121,6 +160,8 @@ categories: '2021'
 - `useEffect` 是用于处理各种状态变化造成的副作用，也就是说只有在特定的时刻，才会执行的逻辑, 在 `hooks` 出来之后，函数组件中没有 `shouldComponentUpdate` 生命周期，我们无法通过判断前后状态来决定是否更新。
 - `effect`副作用指的是： `ajax` 请求、访问原生`dom` 元素、本地持久化缓存、绑定/解绑事件、添加订阅、设置定时器、记录日志等
 - `useEffect` 不再区分 `mount` `update` 两个状态，这意味着函数组件的每一次调用都会执行其内部的所有逻辑，那么会带来较大的性能损耗。
+
+- 由于`useEffect`是异步的，是在真实的`DOM`构建之后去执行，而 `componentDidMount`、`componentDidUpdate` 是在真实`DOM`构建之前去执行的
 
 ```js
     /* 下面就以一个修改 页面title的例子作以说明 */
@@ -163,11 +204,20 @@ categories: '2021'
         const  [count, setCount] = useState(0)
 
         useEffect(() => {
+            // 由于`useEffect`是异步的，是在真实的`DOM`构建之后去执行  此时的 count是最新的值 
             document.title = `You clicked ${count} times`
             return function() {
-                document.title = "React App";
+                // count 二次修改的时候，先执行这里的逻辑
+                // 组件销毁的时候也会执行这里的逻辑
+                document.title = "React App"; 
             }
         }, [count])
+
+        /* 
+         useEffect: 是`componentDidMount`、`componentDidUpdate` 和 `componentWillUnmount`的组合
+         1. 如果不给依赖项 [] 的时候会执行2次 `componentDidMount`、`componentDidUpdate` 
+         2. 依赖项更新的时候，useEffect Hook 也会被执行
+        */
     }
     return (<>
         <p>You clicked {count} times</p>
@@ -240,7 +290,7 @@ categories: '2021'
 ```
 
 ### useCallback
-- 如果有函数传递给子组件，使用 `useCallback`， 配合`meno`使用。这句话的理解就是：一个父组件中有多个子组件，有一个子组件中的`button`要出发父组件中的方法，父组件更新就会导致他下面所有的子组件一起重新渲染，而原则上是那个子组件出发父组件的方法，就应该只有他自己更新，其他的就不要动了，这样可以节省性能， `useCallback`就是来处理这个问题的，类似于`useMemo`的局部更新
+- 如果有函数传递给子组件，使用 `useCallback`， 配合`meno`使用。这句话的理解就是：一个父组件中有多个子组件，有一个子组件中的`button`要触发父组件中的方法，父组件更新就会导致他下面所有的子组件一起重新渲染，而原则上是哪个子组件触发父组件的方法，就应该只有他自己更新，其他的就不要动了，这样可以节省性能， `useCallback`就是来处理这个问题的，类似于`useMemo`的局部更新
 
 ```js
     import React, {useState, useCallback} from 'react'
@@ -295,10 +345,24 @@ categories: '2021'
 
 ```js
     /* 一个input自动获取焦点的例子 */
-    import React, { useRef, createRef } from 'react'
+    import React, { useRef, createRef, forwardRef } from 'react'
+    // forwardRef 转发ref
+    const ChildComp = forwardRef((props, inputRef) => {
+        const onClick = () => {
+            inputRef.current.focus();
+        }
+        return (
+            <div>
+                <input type="text" ref={inputRef} />
+                <button onClick={onClick}>聚焦</button>
+            </div>
+        )
+    })
+
     const UseRef = () => {
         const input1 = useRef(null);
         const input2 =createRef()
+        let input3 = null;
 
         const _input1Click = () => {
             input1.current.focus()
@@ -306,6 +370,19 @@ categories: '2021'
 
         const _input2Click = () => {
             input2.current.focus()
+        }
+
+        const handerInput = (input) => {
+            input3 = input
+        }
+        const _input3Click = () => {
+            input3.focus()
+        }
+
+        // 父组件让子组件组件中的input聚焦
+        const inputRef = createRef();
+        const onClick = () => {
+            inputRef.current.focus();
         }
 
         return(<>
@@ -317,6 +394,15 @@ categories: '2021'
                 input2: <input type="text" ref={input2} / >
                 <button onClick={_input2Click}>input2自动获取焦点</button>
             </div>
+            <div>
+                input3:<input type="text" ref={handerInput} />
+                <button onClick={_input3Click}>input3自动获取焦点</button>
+            </div>
+            <br />
+            <h7>子组件</h7>
+            < ChildComp ref={inputRef} />
+            <h7>父组件</h7>
+            <button onClick={onClick}>父组件让子组件的input聚焦</button>
         </>)
     }
 ```
@@ -355,7 +441,7 @@ categories: '2021'
 ```
 
 ### useReducer
-- `useReducer` 是 `useState` 更为高级的一种解决方法，需要外置外置 `reducer` (全局)，通过这种方式可以对多个状态同时进行控制。
+- `useReducer` 是 `useState` 更为高级的一种解决方法，需要外置 `reducer` (全局)，通过这种方式可以对多个状态同时进行控制。
 - 仔细端详起来，其实跟 `redux` 中的数据流的概念非常接近
 
 ```js

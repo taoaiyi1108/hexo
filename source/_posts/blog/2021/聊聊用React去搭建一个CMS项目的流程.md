@@ -8,10 +8,15 @@ categories: 编程
 
 <!-- more -->
 
-### 说在开头
+### 说在开头 
 
 项目是20年7月份做的，不大，也是第一次去用React做项目，有些许收获，现在重新梳理一下，后面以备不时之需，毕竟日常中接触的大多是Vue项目，担心生疏了。
 有不对的地方还望各位同学见谅！
+
+- [源码](https://taoaiyi1108.oss-cn-beijing.aliyuncs.com/post/react/react-admin.zip)
+- [线上地址](http://47.97.48.155:8080/) 有点卡，耐心点 admin 123456
+
+
 
 ### 准备
 
